@@ -62,7 +62,9 @@ while True:
         if event.type == pygame.KEYDOWN:
             pauseExect = not pauseExect
 
-        
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                pygame.quit()
 
         #Detectamos si se presiona el raton
 
