@@ -60,8 +60,8 @@ while True:
     for event in ev:
         #detectamos si se pulsa una tecla
         if event.type == pygame.KEYDOWN:
-            pauseExect = not 
-            
+            pauseExect = not pauseExect
+
         
 
         #Detectamos si se presiona el raton
