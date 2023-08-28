@@ -1,15 +1,19 @@
+from pygame.locals import *
 import pygame
 import numpy as np
 import time
+import sys
 
 pygame.init()
-width, height = 400, 400
+width, height = 800, 800
 bg = 25, 25, 25
 
 screen = pygame.display.set_mode((height, width))
+pygame.display.set_caption("Juego de la vida")
+
 screen.fill(bg)
 
-nxC, nyC = 60, 60
+nxC, nyC = 100, 100
 
 gameState = np.zeros((nxC, nyC))
 
@@ -19,9 +23,9 @@ dimCH = height/nyC
 gameState[38, 20] = 1
 gameState[39, 20] = 1
 gameState[40, 20] = 1
-gameState[38, 20] = 1
-gameState[39, 20] = 1
-gameState[40, 20] = 1
+gameState[60, 20] = 1
+gameState[61, 20] = 1
+gameState[59, 20] = 1
 
 # Runner 1
 gameState[10,5] = 1
@@ -52,19 +56,21 @@ pauseExect=False
 
 while True:
     newGameState = np.copy(gameState)
-    time.sleep(0.1)
+   
     screen.fill(bg)
 
     ev = pygame.event.get()
 
     for event in ev:
         #detectamos si se pulsa una tecla
-        if event.type == pygame.KEYDOWN:
+
+        keys = pygame.key.get_pressed()
+        if keys[K_p]:     
             pauseExect = not pauseExect
 
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
+        if keys[K_ESCAPE]:         
                 pygame.quit()
+                sys.exit()
 
         #Detectamos si se presiona el raton
 
@@ -104,7 +110,7 @@ while True:
                 # Si la celda está "muerta" pintamos un recuadro con borde gris
                 if newGameState[x, y] == 0:
                     pygame.draw.polygon(screen, (40, 40, 40), poly, 1)
-            # Si la celda está "viva" pintamos un recuadro relleno de color
+                # Si la celda está "viva" pintamos un recuadro relleno de color
                 else:
                     pygame.draw.polygon(screen, (200, 100, 100), poly, 0)
     
