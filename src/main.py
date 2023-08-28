@@ -10,7 +10,7 @@ bg = 25, 25, 25
 
 screen = pygame.display.set_mode((height, width))
 pygame.display.set_caption("Juego de la vida")
-
+time.sleep(0.1)
 screen.fill(bg)
 
 nxC, nyC = 100, 100
@@ -65,7 +65,7 @@ while True:
         #detectamos si se pulsa una tecla
 
         keys = pygame.key.get_pressed()
-        if keys[K_p]:     
+        if keys[K_SPACE]:     
             pauseExect = not pauseExect
 
         if keys[K_ESCAPE]:         
@@ -112,7 +112,7 @@ while True:
                     pygame.draw.polygon(screen, (40, 40, 40), poly, 1)
                 # Si la celda está "viva" pintamos un recuadro relleno de color
                 else:
-                    pygame.draw.polygon(screen, (200, 100, 100), poly, 0)
+                    pygame.draw.polygon(screen, (0, 128, 0), poly, 0)
     
         gameState = np.copy(newGameState)
         pygame.display.flip()
